@@ -20,18 +20,32 @@ class Cell:
         if self.has_left_wall:
             line = Line(self._top_left, self._bottom_left)
             self._win.draw_line(line, "black")
-        
+        else:
+            line = Line(self._top_left, self._bottom_left)
+            self._win.draw_line(line, "white")
+
         if self.has_right_wall:
             line = Line(self._top_right, self._bottom_right)
             self._win.draw_line(line, "black")
+        else:
+            line = Line(self._top_right, self._bottom_right)
+            self._win.draw_line(line, "white")
         
         if self.has_top_wall:
             line = Line(self._top_left, self._top_right)
             self._win.draw_line(line, "black")
+        else:
+            line = Line(self._top_left, self._top_right)
+            self._win.draw_line(line, "white")
         
         if self.has_bottom_wall:
             line = Line(self._bottom_left, self._bottom_right)
             self._win.draw_line(line, "black")
+        else:
+            line = Line(self._bottom_left, self._bottom_right)
+            self._win.draw_line(line, "white")
+
+
 
     def draw_move(self, to_cell, undo=False):
         if undo:
