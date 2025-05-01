@@ -2,31 +2,31 @@ from tkinter import Tk, BOTH, Canvas
 
 class Window:
     def __init__(self, width, height):
-        self.__width = width
-        self.__height = height
-        self.__root = Tk()
-        self.__root.title("Maze Solver") 
-        self.__canvas = Canvas(self.__root, height=height, width=width)
-        self.__is_running = False
+        self._width = width
+        self._height = height
+        self._root = Tk()
+        self._root.title("Maze Solver") 
+        self._canvas = Canvas(self._root, height=height, width=width)
+        self._is_running = False
 
-        self.__canvas.pack()
-        self.__root.protocol("WM_DELETE_WINDOW", self.close)
+        self._canvas.pack()
+        self._root.protocol("WM_DELETE_WINDOW", self.close)
 
     def redraw(self):
-        self.__root.update_idletasks()
-        self.__root.update()
+        self._root.update_idletasks()
+        self._root.update()
     
     def wait_for_close(self):
-        self.__is_running = True
-        while self.__is_running == True:
+        self._is_running = True
+        while self._is_running == True:
             self.redraw()
         print("Window closed")
 
     def close(self):
-        self.__is_running = False
+        self._is_running = False
     
     def draw_line(self, line, fill_color):
-        line.draw(self.__canvas, fill_color)
+        line.draw(self._canvas, fill_color)
 
 class Point:
     def __init__(self, x, y):
@@ -51,25 +51,25 @@ class Cell:
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
-        self.__top_left = p1
-        self.__bottom_left = Point(p1.x, p2.y)
-        self.__top_right = Point(p2.x, p1.y)
-        self.__bottom_right = p2
-        self.__win = win
+        self._top_left = p1
+        self._bottom_left = Point(p1.x, p2.y)
+        self._top_right = Point(p2.x, p1.y)
+        self._bottom_right = p2
+        self._win = win
     
     def draw(self):
         if self.has_left_wall:
-            line = Line(self.__top_left, self.__bottom_left)
-            self.__win.draw_line(line, "black")
+            line = Line(self._top_left, self._bottom_left)
+            self._win.draw_line(line, "black")
         
         if self.has_right_wall:
-            line = Line(self.__top_right, self.__bottom_right)
-            self.__win.draw_line(line, "black")
+            line = Line(self._top_right, self._bottom_right)
+            self._win.draw_line(line, "black")
         
         if self.has_top_wall:
-            line = Line(self.__top_left, self.__top_right)
-            self.__win.draw_line(line, "black")
+            line = Line(self._top_left, self._top_right)
+            self._win.draw_line(line, "black")
         
         if self.has_bottom_wall:
-            line = Line(self.__bottom_left, self.__bottom_right)
-            self.__win.draw_line(line, "black")
+            line = Line(self._bottom_left, self._bottom_right)
+            self._win.draw_line(line, "black")
