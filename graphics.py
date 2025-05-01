@@ -45,31 +45,3 @@ class Line:
             fill=fill_color, width=2
         )
 
-class Cell:
-    def __init__(self, p1, p2, win):
-        self.has_left_wall = True
-        self.has_right_wall = True
-        self.has_top_wall = True
-        self.has_bottom_wall = True
-        self._top_left = p1
-        self._bottom_left = Point(p1.x, p2.y)
-        self._top_right = Point(p2.x, p1.y)
-        self._bottom_right = p2
-        self._win = win
-    
-    def draw(self):
-        if self.has_left_wall:
-            line = Line(self._top_left, self._bottom_left)
-            self._win.draw_line(line, "black")
-        
-        if self.has_right_wall:
-            line = Line(self._top_right, self._bottom_right)
-            self._win.draw_line(line, "black")
-        
-        if self.has_top_wall:
-            line = Line(self._top_left, self._top_right)
-            self._win.draw_line(line, "black")
-        
-        if self.has_bottom_wall:
-            line = Line(self._bottom_left, self._bottom_right)
-            self._win.draw_line(line, "black")
